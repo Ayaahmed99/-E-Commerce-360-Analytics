@@ -5,7 +5,7 @@
 > **Full-cycle data analysis project** using SQL, Python, Excel, and Power BI  
 > on the [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) dataset — 100k+ orders · 2016–2018
 
-[![SQL](https://img.shields.io/badge/SQL-PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![SQL](https://img.shields.io/badge/SQL-SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/en-us/sql-server)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Excel](https://img.shields.io/badge/Excel-Dashboard-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)](https://www.microsoft.com/excel)
 [![Power BI](https://img.shields.io/badge/Power_BI-Report-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
@@ -115,7 +115,7 @@ ecommerce-360-analytics/
 
 ### 1. SQL — Data Extraction & Segmentation
 
-> **Tool:** PostgreSQL · **Purpose:** Foundation of all downstream analysis
+> **Tool:** SQL Server Management Studio (SSMS) · **Purpose:** Foundation of all downstream analysis
 
 - Joined 9 relational tables using order/customer/seller keys
 - Computed delivery delay KPIs per state and compared against estimated delivery dates
@@ -143,9 +143,9 @@ SELECT
     customer_state,
     COUNT(*) AS total_deliveries,
 
-    ROUND(AVG(actual_days), 1) AS avg_actual_days,
-    ROUND(AVG(estimated_days), 1) AS avg_estimated_days,
-    ROUND(AVG(days_diff), 1) AS avg_days_early_or_late,
+    ROUND(AVG(CAST(actual_days AS FLOAT)), 1) AS avg_actual_days,
+    ROUND(AVG(CAST(estimated_days AS FLOAT)), 1) AS avg_estimated_days,
+    ROUND(AVG(CAST(days_diff AS FLOAT)), 1) AS avg_days_early_or_late,
 
     -- % Late deliveries
     ROUND(100.0 * SUM(CASE WHEN days_diff < 0 THEN 1 ELSE 0 END) / COUNT(*), 2) 
@@ -160,7 +160,7 @@ SELECT
         AS pct_on_time,
 
     -- Avg delay only for late deliveries
-    ROUND(AVG(CASE WHEN days_diff < 0 THEN ABS(days_diff) END), 1) 
+    ROUND(AVG(CASE WHEN days_diff < 0 THEN CAST(ABS(days_diff) AS FLOAT) END), 1) 
         AS avg_late_days
 
 FROM delivery_stats
@@ -187,8 +187,8 @@ numpy==1.26.0
 seaborn==0.13.0
 plotly==5.18.0
 matplotlib==3.8.0
-sqlalchemy==2.0.20      # PostgreSQL connection
-psycopg2-binary==2.9.9
+sqlalchemy==2.0.20      # SQL Server connection
+pyodbc==4.0.39          # ODBC driver for SQL Server
 jupyter==1.0.0
 ```
 
@@ -300,12 +300,15 @@ Revenue YTD = TOTALYTD([Total Revenue], DimDate[Date])
 ```bash
 # Python environment
 pip install -r requirements.txt
-
-# PostgreSQL — create a database and run SQL scripts in order:
-psql -U postgres -d ecommerce -f sql/01_schema_setup.sql
-psql -U postgres -d ecommerce -f sql/02_revenue_analysis.sql
-# ... and so on
 ```
+
+### SQL Server Setup
+1. Open **SQL Server Management Studio (SSMS)** and connect to your SQL Server instance
+2. Create a new database named `ecommerce`
+3. Open and execute the SQL scripts in order:
+   - `sql/01_schema_setup.sql`
+   - `sql/02_revenue_analysis.sql`
+   - `sql/03_delivery_analysis.sql`
 
 ### Jupyter Notebooks
 ```bash

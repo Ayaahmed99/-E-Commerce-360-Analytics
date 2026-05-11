@@ -84,8 +84,7 @@ ecommerce-360-analytics/
 ├── 📂 sql/
 │   ├── 01_schema_setup.sql          # Table creation & constraints
 │   ├── 02_revenue_analysis.sql      # Revenue by region, category, time
-│   ├── 03_rfm_segmentation.sql      # Recency, Frequency, Monetary scoring
-│   └── 04_delivery_analysis.sql     # Delivery KPIs by state & carrier
+│   └── 03_delivery_analysis.sql     # Delivery KPIs by state & carrier
 │
 ├── 📂 python/
 │   ├── 01_data_cleaning.ipynb       # Null handling, type fixing, deduplication
@@ -119,7 +118,6 @@ ecommerce-360-analytics/
 > **Tool:** PostgreSQL · **Purpose:** Foundation of all downstream analysis
 
 - Joined 9 relational tables using order/customer/seller keys
-- Built RFM (Recency, Frequency, Monetary) segmentation to classify customer tiers
 - Computed delivery delay KPIs per state and compared against estimated delivery dates
 - Revenue sliced by geography, product category, payment method, and time period
 

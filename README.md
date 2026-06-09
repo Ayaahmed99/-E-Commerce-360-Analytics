@@ -271,11 +271,8 @@ Revenue YTD = TOTALYTD([Total Revenue], DimDate[Date])
 
 ### Report Pages
 
-#### Page 1 — Executive Overview
-- KPI cards: Revenue · Orders · AOV · Avg. Review Score
-- Line chart: Revenue & Orders trend over time
-- Donut chart: Payment method distribution
-- Filled map: Revenue by customer state (Brazil)
+<img width="1784" height="1022" alt="Executive Overview" src="https://github.com/user-attachments/assets/9701abc9-1b96-4d50-80b9-bf64e684f340" />
+
 
 #### Page 2 — Product Performance
 - Bar chart: Top 15 categories by revenue

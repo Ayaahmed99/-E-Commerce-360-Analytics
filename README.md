@@ -271,7 +271,7 @@ Revenue YTD = TOTALYTD([Total Revenue], DimDate[Date])
 
 ### Report Pages
 #### Page 1 — Executive Overview
-<img width="1920" height="1080" alt="Executive Overview" src="https://github.com/user-attachments/assets/33e2204d-7874-4fe7-aafe-81bc9a1a105c" />
+<img width="1756" height="1006" alt="Executive Overview" src="https://github.com/user-attachments/assets/976bd908-b931-4b17-986f-352c826cc9a2" />
 
 
 #### Page 2 — Product Performance
